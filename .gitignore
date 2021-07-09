@@ -1,0 +1,12 @@
+.mvn/
+.settings/
+target/
+src/main/resources/application.properties
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+

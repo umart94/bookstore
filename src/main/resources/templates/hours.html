@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+		<div class="row" style="margin-bottom: -100px;">
+			<div class="col-xs-8">
+				<h2 class="section-headline">
+					<span>User Account</span>
+				</h2>
+			</div>
+			
+		</div>
+		<div>
+		Store is open Monday to Friday.
+		<br/>
+		<h4 class="question">Q: How long does it take to process and ship orders?</h4>
+            <p>A: Please allow 1 - 3 business days (Monday-Friday) for order processing regardless of the shipping
+                method chosen. Once shipped you should receive your order within 2 - 10 business days. Please note that
+                2 day and Overnight services refer to business days (Monday - Friday).
+            </p>
+            </div>
+		</div>
+	</div>
+	<!-- end of container -->
+<div th:replace="common/header :: footer"/>
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

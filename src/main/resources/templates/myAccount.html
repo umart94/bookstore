@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar" />
+	<div class="container">
+		<div class="row">
+		<div class="col-xs-9 col-xs-offset-3">
+		<ul class="nav nav-tabs">
+			<li th:classappend="${classActiveNewAccount}? 'active'"><a href="#tab-1" data-toggle="tab" ><span>Create New Account</span></a></li>
+			<li th:classappend="${classActiveLogin}? 'active'"><a href="#tab-2" data-toggle="tab"><span>Login</span></a></li>
+			<li th:classappend="${classActiveResetPassword}? 'active'"><a href="#tab-3" data-toggle="tab"><span>Reset Password</span></a></li>
+		</ul>
+		
+		<!--  Tab Panels -->
+		<div class="tab-content">
+		
+		<!-- Create New User Pane -->
+		<div class="tab-pane fade" id="tab-1" th:classappend="${classActiveNewAccount}? 'in active'">
+		<div class="panel-group">
+		<div class="panel panel-default" style="border:none;">
+		<div class="panel-body" style="background-color:#ededed; margin-top:20px;">
+		<div class="alert alert-info" th:if="${emailSent}">
+			An email has been sent to the email address you just registered with.
+			Please Validate Email Address and Update Your Password Information
+		</div>
+		<form th:action="@{/newUser}" method="post">
+				<div class="form-group">
+					<label for="newUsername">Username: </label><span style="color:red;" th:if=${usernameExists}>Please Specify a Different Username</span>
+					<input required="required" type="text" class="form-control" id="newUsername" name="username" />
+					<p style="color:#828282;">Enter your Username here</p>
+				
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="email">Email Address: </label><span style="color:red;" th:if=${emailExists}>Please specify a different Email Address</span>
+					<input required="required" type="text" class="form-control" id="email" name="email" />
+					<p style="color:#828282;">Enter your valid Email Address, All emails from our website will be sent here. Your Email Address will not be made public and will only be used to send password reset emails if you forget your password and for subscription/notification emails.</p>
+				
+				</div>
+				<button type="submit" class="btn btn-success">Create Account</button>
+				
+				
+		</form>
+		
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		
+		
+			<!-- Login Pane -->
+		<div class="tab-pane fade" id="tab-2" th:classappend="${classActiveLogin}? 'in active'">
+		<div class="panel-group">
+		<div class="panel panel-default" style="border:none;">
+		<div class="panel-body" style="background-color:#ededed; margin-top:20px;">
+		
+		<div th:if="${param.error != null}" style="color: red;">Incorrect Username or Password, Please Re-enter The Correct Username and Password. </div>
+		<form th:action="@{/login}" method="post">
+				<div class="form-group">
+					<label for="newUsername">Username: </label>
+					<input required="required" type="text" class="form-control" id="newUsername" name="username" />
+					<p style="color:#828282;">Enter your Username here </p>
+				
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="password">Password: </label>
+					<input required="required" type="password" class="form-control" id="password" name="password" />
+					<p style="color:#828282;">Enter Your Password here </p>
+				
+				</div>
+				<button type="submit" class="btn btn-success">Login</button>
+				
+				
+		</form>
+		
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		
+		
+		
+			<!-- Forgot Password Pane -->
+		<div class="tab-pane fade" id="tab-3" th:classappend="${classActiveResetPassword}? 'in active'">
+		<div class="panel-group">
+		<div class="panel panel-default" style="border:none;">
+		<div class="panel-body" style="background-color:#ededed; margin-top:20px;">
+		<div th:if="${emailNotExists}" class="alert alert-danger"> Email Does not Exist. </div>
+		<div th:if="${resetPasswordEmailSent}" class="alert alert-success"> Password Reset Email Sent.  </div>
+	
+		<form th:action="@{/resetPassword}" method="post">
+				<div class="form-group">
+					<label for="recoverEmail">Email Address: </label>
+					<input required="required" type="text" class="form-control" id="recoverEmail" name="email" />
+					<p style="color:#828282;">Enter the Email Address you used to create your account</p>
+				
+				</div>
+				
+				
+				
+				<button type="submit" class="btn btn-danger">Reset Password</button>
+				
+				
+		</form>
+		
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		
+		</div>
+		
+		</div>
+		</div>
+		
+	</div>
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>
